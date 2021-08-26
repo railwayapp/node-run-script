@@ -22,7 +22,7 @@ jobs:
         repo: ${{ github.repository }}
         run_id: ${{ github.event.workflow_run.id }}
         workspace: "/github/workspace"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
     - id: pr-data
       run: |
         echo "::set-output name=author::$(cat event.json | jq -r '.pull_request.user.login')"
@@ -38,7 +38,7 @@ jobs:
       id: unverified-commits
       uses: paketo-buildpacks/github-config/actions/pull-request/check-unverified-commits@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_REVIEWER_GITHUB_TOKEN }}
         repo: ${{ github.repository }}
         number: ${{ needs.download.outputs.pr-number }}
 
@@ -46,7 +46,7 @@ jobs:
       id: human-commits
       uses: paketo-buildpacks/github-config/actions/pull-request/check-human-commits@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_REVIEWER_GITHUB_TOKEN }}
         repo: ${{ github.repository }}
         number: ${{ needs.download.outputs.pr-number }}
 
@@ -58,5 +58,5 @@ jobs:
       if: steps.human-commits.outputs.human_commits == 'false' && steps.unverified-commits.outputs.unverified_commits == 'false'
       uses: paketo-buildpacks/github-config/actions/pull-request/approve@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_REVIEWER_GITHUB_TOKEN }}
         number: ${{ needs.download.outputs.pr-number }}
