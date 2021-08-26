@@ -45,8 +45,8 @@ jobs:
         PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         REPOSITORY: ${{ github.repository }}
       run: |
-        IMAGE="${PASSWORD}/${REPOSITORY}"
-        echo "${GITHUB_TOKEN}" | sudo skopeo login --username "${USERNAME}" --password-stdin ${REGISTRY}
+        IMAGE="${REGISTRY}/${REPOSITORY}"
+        echo "${PASSWORD}" | sudo skopeo login --username "${USERNAME}" --password-stdin ${REGISTRY}
         sudo skopeo copy "oci-archive:${GITHUB_WORKSPACE}/buildpackage.cnb" "docker://${IMAGE}:${{ steps.event.outputs.tag }}"
         sudo skopeo copy "oci-archive:${GITHUB_WORKSPACE}/buildpackage.cnb" "docker://${IMAGE}:latest"
         echo "::set-output name=image::${IMAGE}"
