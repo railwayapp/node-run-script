@@ -163,22 +163,23 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 				}))
 			})
 		})
-	})
 
-	context("failure cases", func() {
 		context("when the env var of \"$BP_NODE_RUN_SCRIPTS\" is not set", func() {
 			it.Before(func() {
 				Expect(os.Unsetenv("BP_NODE_RUN_SCRIPTS")).To(Succeed())
 			})
 
-			it("returns a failure", func() {
+			it("does not fail", func() {
 				_, err := detect(packit.DetectContext{
 					WorkingDir: workingDir,
 				})
 
-				Expect(err).To(MatchError("expected value from $BP_NODE_RUN_SCRIPTS to be set"))
+				Expect(err).NotTo(HaveOccurred())
 			})
 		})
+	})
+
+	context("failure cases", func() {
 
 		context("if package.json is absent", func() {
 			it.Before(func() {
