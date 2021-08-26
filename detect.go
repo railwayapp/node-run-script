@@ -17,9 +17,10 @@ type BuildPlanMetadata struct {
 func Detect(scriptManager PackageInterface) packit.DetectFunc {
 	return func(context packit.DetectContext) (packit.DetectResult, error) {
 		envRunScripts, exists := os.LookupEnv("BP_NODE_RUN_SCRIPTS")
+
+		// If no node scripts, run build
 		if !exists {
-			return packit.DetectResult{},
-				packit.Fail.WithMessage("expected value from $BP_NODE_RUN_SCRIPTS to be set")
+			envRunScripts = "build"
 		}
 
 		projectDir := context.WorkingDir

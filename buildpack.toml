@@ -1,9 +1,9 @@
 api = "0.4"
 
 [buildpack]
-  homepage = "https://github.com/paketo-buildpacks/node-run-script"
-  id = "paketo-buildpacks/node-run-script"
-  name = "Paketo Node Run Script Buildpack"
+  homepage = "https://github.com/railwayapp/railway-node-run-script"
+  id = "railwayapp/railway-node-run-script"
+  name = "Railway Node Run Script Buildpack"
 
 [metadata]
   include-files = ["bin/run", "bin/build", "bin/detect", "buildpack.toml"]
