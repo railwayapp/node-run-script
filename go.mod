@@ -1,4 +1,4 @@
-module github.com/paketo-buildpacks/node-run-script
+module github.com/railwayapp/node-run-script
 
 go 1.16
 

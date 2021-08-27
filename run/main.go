@@ -3,11 +3,11 @@ package main
 import (
 	"os"
 
-	noderunscript "github.com/paketo-buildpacks/node-run-script"
 	"github.com/paketo-buildpacks/packit"
 	"github.com/paketo-buildpacks/packit/chronos"
 	"github.com/paketo-buildpacks/packit/pexec"
 	"github.com/paketo-buildpacks/packit/scribe"
+	noderunscript "github.com/railwayapp/node-run-script"
 )
 
 func main() {
