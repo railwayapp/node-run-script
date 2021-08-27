@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	noderunscript "github.com/paketo-buildpacks/node-run-script"
-	"github.com/paketo-buildpacks/node-run-script/fakes"
 	"github.com/paketo-buildpacks/packit"
+	noderunscript "github.com/railwayapp/node-run-script"
+	"github.com/railwayapp/node-run-script/fakes"
 	"github.com/sclevine/spec"
 
 	. "github.com/onsi/gomega"
